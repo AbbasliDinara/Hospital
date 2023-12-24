@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <style>
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .info-table th {
+            background-color: #f2f2f2;
+        }
+        .info-table tr:nth-child(even) {background-color: #f2f2f2;}
+        .info-table tr:hover {background-color: #ddd;}
+    </style>
+     
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <h2>Doctor Information</h2>
+
+    <form action="/admin/doctor" method="post">
+        <div>
+            <input type="text" name="doctor_id" placeholder="Doctor ID" required>
+            <input type="text" name="name" placeholder="Doctor Name" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="phone_number" placeholder="Phone Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="number" name="department_id" placeholder="Department ID" required>
+            <button type="submit" name="action1" value="addDoctor">Enter Doctor</button>
+        </div>
+    </form>
+
+    <table class="info-table">
+        <tr>
+            <th>Doctor ID</th>
+            <th>Doctor Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Password</th>
+            <th>Department ID</th>
+            <th>Actions</th>
+        </tr>
+        {{#each doctors}}
+        <tr>
+            <form method="POST" action="/admin/modify-doctor/{{doctor_id}}">
+                <td>{{doctor_id}}</td>
+                <td><input type="text" name="name" value="{{name}}"></td>
+                <td><input type="text" name="address" value="{{address}}"></td>
+                <td><input type="text" name="phone" value="{{phone_number}}"></td>
+                <td><input type="password" name="password" value="{{password}}"></td>
+                <td><input type="number" name="id" value="{{Medicalspeciality_department_id}}"></td>
+                <td><button type="submit">Modify</button> </td></form>
+                  <td> <form method="POST" action="/admin/delete-doctor/{{doctor_id}}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+        </tr>
+        {{/each}}
+    </table>
+
+    <h2>Nurse Information</h2>
+
+    <form action="/admin/nurse" method="post">
+        <div>
+            <input type="text" name="nurse_id" placeholder="Nurse ID" required>
+            <input type="text" name="name" placeholder="Nurse Name" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="phone_number" placeholder="Phone Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="number" name="department_id" placeholder="Department ID" required>
+            <button type="submit" name="action2" value="addNurse">Enter Nurse</button>
+        </div>
+    </form>
+
+    <table class="info-table">
+        <tr>
+            <th>Nurse ID</th>
+            <th>Nurse Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Password</th>
+            <th>Department ID</th>
+            <th>Actions</th>
+        </tr>
+        {{#each nurses}}
+        <tr>
+            <form method="POST" action="/admin/modify-nurse/{{nurse_id}}">
+                <td>{{nurse_id}}</td>
+                <td><input type="text" name="name" value="{{name}}"></td>
+                <td><input type="text" name="address" value="{{address}}"></td>
+                <td><input type="text" name="phone" value="{{phone_number}}"></td>
+                <td><input type="password" name="password" value="{{password}}"></td>
+                <td><input type="number" name="id" value="{{Medicalspeciality_department_id}}"></td>
+                <td> <button type="submit">Modify</button></form> </td>
+             <td><form method="POST" action="/admin/delete-nurse/{{nurse_id}}">
+                <button type="submit">Delete</button></form>
+                </td>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>
+

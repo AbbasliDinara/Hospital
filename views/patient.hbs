@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .info-table th {
+            background-color: #f2f2f2;
+        }
+        .info-table tr:nth-child(even) {background-color: #f2f2f2;}
+        .info-table tr:hover {background-color: #ddd;}
+    </style>
+     
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <h2>Reservation Information</h2>
+
+    <form action="/patient/reservation" method="post">
+        <div>
+            <input type="number" name="parsedReservationNumber" placeholder="Reservation ID" required>
+            <input type="text" name="parsedPatientId" placeholder="Patient ID" required>
+            <input type="text" name="parsedDepartmentId" placeholder="Medicalspeciality Department ID" required>
+            <input type="datetime-local" name="reservation_date_time" placeholder="Reservation Date Time" required>
+            <button type="submit" name="action1" value="addReservation">Enter Reservation</button>
+        </div>
+    </form>
+
+    <table class="info-table">
+        <tr>
+            <th>Reservation Number</th>
+            <th>Patient ID</th>
+            <th>Medicalspeciality Department ID</th>
+            <th>Reservation Date Time</th>
+        </tr>
+        {{#each reservations}}
+<tr>
+            <form method="POST" action="/patient/delete-reservation/{{reservation_number}}">
+                <td><input type="number" name="parsedReservationNumber" value="{{reservation_number}}"></td>
+                <td><input type="number" name="parsedPatientId" value="{{Patient_patient_id}}"></td>
+                <td><input type="number" name="parsedDepartmentId" value="{{Medicalspeciality_department_id}}"></td>
+                <td><input type="text" name="reservation_date_time" value="{{reservation_date_time}}"></td>
+                <td><button type="submit">Delete</button> </td></form>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>
+
+
+
+
+         
